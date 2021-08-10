@@ -1,1 +1,45 @@
 /* Write your CSS Here. */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#submit-btn {
+  background-color: lightblue;
+  font-size: 18px;
+  width: 200px;
+  padding: 4px;
+  margin-top: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #eee;
+  max-width: 800px;
+  padding: 20px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.new-game-starter {
+  background-color: #eee;
+  max-width: 800px;
+  padding: 20px;
+  height: 100vh;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#input {
+  min-width: 500px;
+  height: 30px;
+  background-color: #fefefe;
+  margin-top: 10px;
+  border: 2px solid royalblue;
+}
+

@@ -20,11 +20,24 @@
   </head>
 
   <body>
-    <h1>Open the Developer Tools to see the console output.</h1>
-    <h3>
-      Either right click and select "Inspect" or use the shortcut Option + ⌘ + J
-      (on macOS), or Shift + CTRL + J (on Windows/Linux).
-    </h3>
+    <main>
+      <h5 class="question"></h5>
+      <input
+        type="text"
+        name="input"
+        id="input"
+        required
+        placeholder="Your answer" required />
+      <button id="submit-btn">Submit</button>
+      <!-- <button style="display: none" id="next-question-btn">Submit</button> -->
+      <h4 id="message"></h4>
+    </main>
+    <div style="display: none" class="new-game-starter">
+      <h4 class="failure-message" ></h4>
+      <a id="link" href="./index.html">Start new game</a>
+      
+    </div>
+
     <script src="code.js"></script>
   </body>
 </html>
