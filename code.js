@@ -13,51 +13,58 @@ let message = document.getElementById('message')
 let main = document.querySelector('main')
 let button = document.getElementById('submit-btn')
 
-fetch('https://jservice.io/api/random')
-  .then(res => res.json())
-  .then(data => {
-    let id = data[0].category_id
-    fetchQuestionUsingCategory_Id(id)
-  })
-
-function fetchQuestionUsingCategory_Id (id) {
+window.onload = fetchRandomQuestion
+function fetchRandomQuestion () {
+  fetch('https://jservice.io/api/random')
+    .then(res => res.json())
+    .then(data => {
+      let id = data[0].category_id
+      fetchQuestionsUsingCategoryId(id)
+    })
+}
+function fetchQuestionsUsingCategoryId (id) {
   fetch(`https://jservice.io/api/clues?category=${id}`).then(res =>
     res.json().then(data => {
       data.map(item => {
         array.push([item.question, item.answer])
       })
-      qAandAFunction(array)
+      qAandAFunction()
     })
   )
 }
 
-function qAandAFunction (array) {
+/*a question should appear on page as soon as the user comes in.
+user's click button should call a fuction that compares the user's answer and the answer from the API, and if the user's answer is correct, then another question should appear on the page.
+*/
+
+function qAandAFunction () {
   //generate a random number between 0 and array.length-1
   random = Math.floor(Math.random() * array.length)
   question.append(`${array[random][0]}`)
   answer = array[random][1].toLowerCase()
-  //get input from the user and compare with the answer.
-  if (array.length) {
-    button.addEventListener('click', function (event) {
-      event.preventDefault()
-
-      let value = userInput.value.toLowerCase()
-      if (value === answer) {
-        question.innerHTML = ''
-        array.splice(random, 1)
-        score += 1
-        render(score)
-        qAandAFunction()
-      } else {
-        score = 0
-        newGame()
-        render(score)
-      }
-    })
-  } else {
-    fetchQuestionUsingCategory_Id()
-  }
 }
+
+button.addEventListener('click', function (event) {
+  event.preventDefault()
+
+  let value = userInput.value.toLowerCase()
+  userInput.value = ''
+  if (value === answer) {
+    question.innerHTML = ''
+    array.splice(random, 1)
+    score += 1
+    render(score)
+    if (array.length > 0) {
+      qAandAFunction()
+    } else {
+      fetchRandomQuestion()
+    }
+  } else {
+    score = 0
+    newGame()
+    render(score)
+  }
+})
 
 function newGame () {
   score = 0
@@ -72,13 +79,13 @@ function newGame () {
 function render (score) {
   if (score === 0) {
     failureMessage.append(`
-    Your answer is incorrect,
-    your score is: ${score}
+    Your answer is incorrect 👎,
+    your score is: ${score} 
 `)
   } else {
     message.innerText = ''
     message.append(`
-    Your answer is correct, 
-    you have a score of: ${score} 👍`)
+    Your answer is correct 👍, 
+    you have a score of: ${score}`)
   }
 }
