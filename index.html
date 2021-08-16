@@ -14,6 +14,13 @@
 
     <!-- Title Page-->
     <title>Kenzie JavaScript Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <!-- CSS-->
     <link href="style.css" rel="stylesheet" media="all" />
@@ -21,21 +28,27 @@
 
   <body>
     <main>
-      <h5 class="question"></h5>
+      <div class="headings">
+        <h3>Playing the Game</h3>
+        <h4 class="Category"></h4>
+        <h5 class="question"></h5>
+      </div>
+
       <input
         type="text"
         name="input"
         id="input"
+        placeholder="Your answer"
         required
-        placeholder="Your answer" required />
+      />
       <button id="submit-btn">Submit</button>
-      <!-- <button style="display: none" id="next-question-btn">Submit</button> -->
-      <h4 id="message"></h4>
+      <h4 id="success-message"></h4>
     </main>
     <div style="display: none" class="new-game-starter">
-      <h4 class="failure-message" ></h4>
-      <a id="link" href="./index.html">Start new game</a>
-      
+      <h4 class="failure-message"></h4>
+      <a id="link" href="./index.html"
+        ><h2><i class="fas fa-step-forward"></i>Start new game</h2></a
+      >
     </div>
 
     <script src="code.js"></script>

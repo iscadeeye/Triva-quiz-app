@@ -6,10 +6,11 @@ let array = []
 let answer
 let random
 let score = 0
+let questionNum = 1
 let userInput = document.getElementById('input')
 let question = document.querySelector('.question')
 let failureMessage = document.querySelector('.failure-message')
-let message = document.getElementById('message')
+let message = document.getElementById('success-message')
 let main = document.querySelector('main')
 let button = document.getElementById('submit-btn')
 
@@ -24,10 +25,11 @@ function fetchRandomQuestion () {
 }
 function fetchQuestionsUsingCategoryId (id) {
   fetch(`https://jservice.io/api/clues?category=${id}`).then(res =>
-    res.json().then(data => {
-      data.map(item => {
-        array.push([item.question, item.answer])
+    res.json().then(payload => {
+      payload.map(data => {
+        array.push([data.question, data.answer, data.category.title])
       })
+
       qAandAFunction()
     })
   )
@@ -40,23 +42,28 @@ user's click button should call a fuction that compares the user's answer and th
 function qAandAFunction () {
   //generate a random number between 0 and array.length-1
   random = Math.floor(Math.random() * array.length)
-  question.append(`${array[random][0]}`)
+  question.append(`${questionNum}:  ${array[random][0]}`)
   answer = array[random][1].toLowerCase()
+  let category = document.querySelector('h4')
+  category.innerHTML = ''
+  category.append(`This game is category: ${array[0][2]}`)
 }
 
 button.addEventListener('click', function (event) {
   event.preventDefault()
-
-  let value = userInput.value.toLowerCase()
+  let value = userInput.value.toLowerCase().trim()
   userInput.value = ''
   if (value === answer) {
     question.innerHTML = ''
     array.splice(random, 1)
     score += 1
+    questionNum += 1
     render(score)
     if (array.length > 0) {
       qAandAFunction()
     } else {
+      // let gameFinishedMessage = `Congratulations! you completed category:${category}`
+      // document.body.append(gameFinishedMessage)
       fetchRandomQuestion()
     }
   } else {
@@ -89,3 +96,4 @@ function render (score) {
     you have a score of: ${score}`)
   }
 }
+
