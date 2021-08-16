@@ -31,20 +31,22 @@ main {
   flex-wrap: wrap;
   background-image:
     linear-gradient(to top right, #ff8a00, #e52e71);
-  width: 900px;
+  width: 800px;
   height: 100vh;
-  margin: 0 auto;
+  margin: 40px auto;
   padding: 20px;
   text-align: center;
+
 }
 
 .new-game-starter {
-  background-image: linear-gradient(to bottom right, rgb(216, 202, 202), rgb(160, 132, 132), rgb(190, 24, 24));
+  background-image: linear-gradient(to bottom right, rgb(216, 202, 202), rgb(59, 53, 53), rgba(104, 75, 75, 0.5));
   width: 400px;
-  height: 600px;
-  margin: auto;
+  height: 800px;
+  margin: 40px auto;
   text-align: center;
-  box-shadow: 0px 8px 20px 0px blanchedalmond;
+  box-shadow: -2px -1px 2px 5px blanchedalmond;
+  padding-top: 15px;
 }
 
 #input {
