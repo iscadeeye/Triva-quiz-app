@@ -62,8 +62,6 @@ button.addEventListener('click', function (event) {
     if (array.length > 0) {
       qAandAFunction()
     } else {
-      // let gameFinishedMessage = `Congratulations! you completed category:${category}`
-      // document.body.append(gameFinishedMessage)
       fetchRandomQuestion()
     }
   } else {
@@ -86,14 +84,15 @@ function newGame () {
 function render (score) {
   if (score === 0) {
     failureMessage.append(`
-    Your answer is incorrect 👎,
+    Your answer is incorrect 👎
     your score is: ${score} 
 `)
   } else {
+    message.style.display = "block"
     message.innerText = ''
     message.append(`
-    Your answer is correct 👍, 
-    you have a score of: ${score}`)
+    Your answer is correct 👍 
+    You have a score of: ${score}`)
   }
 }
 

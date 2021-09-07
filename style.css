@@ -93,3 +93,18 @@ i {
   padding: 4px;
   margin-right: 5px;
 }
+
+#success-message {
+  border: 2px solid #334;
+  width: 210px;
+  height: 60px;
+  padding-top: 3px;
+}
+
+.failure-message {
+  border: 2px solid #fefefe;
+  width: 210px;
+  padding-top: 3px;
+  height: 60px;
+  margin: 2px auto;
+}
